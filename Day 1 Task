@@ -1,0 +1,22 @@
+create database hospital; -- creating the hospital dataset
+use hospital; -- using the hospital dataset
+
+create table patients (  -- creating the table with fields
+PatientID int primary key, 
+PatientName varchar(50), 
+Age int, 
+Gender enum ('male', 'female', 'other'), 
+AdmissionDate date
+);
+
+Alter table patients -- altering the table 
+add column DoctorAssigned VARCHAR(50);
+
+Alter table patients -- modifying the patient name length
+modify column PatientName varchar(100);
+
+rename table patients to patients_info;  -- Renameing the table name
+
+use hospital; -- using the same database
+truncate table patients_info; --using the truncate removes the data, not the table 
+drop database hospital; -- using Drop the database is deleted
