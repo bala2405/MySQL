@@ -1,0 +1,56 @@
+
+create database online_book_store; -- creating the database
+use online_book_store; -- using the database
+
+create table Books ( -- creating table with fields data
+Bookid int primary key,
+Title varchar(100),
+Author varchar(50),
+ISBN varchar(20),
+Price Decimal(8,2), check (price>0)
+);
+
+create table orders_columns ( -- creating table with fields data
+orderid int Primary Key,
+Bookid int,
+Foreign key (Bookid) references Books(Bookid),
+OrderDate DATE  NOT NULL,
+Quantity int check(Quantity>0)
+);
+
+alter table Books -- Altering the table with constraint
+add constraint ISBN unique (ISBN);
+
+
+insert into Books( Bookid, Title, Author, ISBN, Price) -- Inserting the data
+values ('001','The Silent River', 'John Mills','012','299'),
+	   ('002','Journey to the Stars','Emma Carter','013','399'),
+       ('003','The Last Leaf','David Harper','014','250'),
+       ('004','Mystic Mountains','Sarah White','015','450'),
+       ('005','Echoes of Time','Mark Benson','016','350');
+       
+insert into orders_columns(Orderid, Bookid, Orderdate, Quantity) -- Inserting the data
+values('101','001','2025-01-12','200'),
+	('102','002','2025-01-15','150'),
+    ('103','003','2025-01-20','180'),
+    ('104','004','2025-01-25','120'),
+    ('105','005','2025-01-28','220');
+    
+
+    select  * from orders_columns; -- selecting the entier fields from orders_columns table 
+    update orders_columns -- updating the record in the quantity field
+    set quantity = quantity+1
+    where orderid = 105;
+    
+    delete from orders_coloumns -- deleting the orderid 103
+    where orderid = 103;
+    
+    truncate table Books; -- removing the fields, not the table 
+    truncate table order_coloumns;
+    
+
+    
+
+
+
+
